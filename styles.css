@@ -1,40 +1,32 @@
 /* ============================================================
    FIFA World Cup 2026 — Stylesheet
-   Theme: Dark base with Gold (#d4af37) and Green (#2ecc71) accents
-   Typography: Oswald (headlines), Inter (body)
+   Broadcast-grade editorial design
    ============================================================ */
 
-/* ───────── CSS Custom Properties (Design Tokens) ───────── */
 :root {
-    /* Core palette */
-    --bg-primary:     #0a0e17;
-    --bg-secondary:   #111827;
-    --bg-card:        #161d2f;
-    --bg-card-hover:  #1e2740;
-    --bg-glass:       rgba(22, 29, 47, 0.72);
+    --bg-primary:     #08090d;
+    --bg-secondary:   #0f1118;
+    --bg-card:        #13151e;
+    --bg-card-hover:  #1a1d2a;
+    --bg-glass:       rgba(18, 20, 30, 0.8);
 
-    /* Accent colours */
-    --gold:           #d4af37;
-    --gold-light:     #f0d060;
-    --gold-dim:       rgba(212, 175, 55, 0.15);
-    --green:          #2ecc71;
-    --green-dark:     #1fa85a;
-    --red-live:       #e74c3c;
+    --gold:           #c9a227;
+    --gold-light:     #e8c84a;
+    --gold-dim:       rgba(201, 162, 39, 0.1);
+    --green:          #27ae60;
+    --green-dark:     #1e8c4c;
+    --red-live:       #d63031;
 
-    /* Text */
-    --text-primary:   #f0f0f0;
-    --text-secondary: #94a3b8;
-    --text-muted:     #64748b;
+    --text-primary:   #e8e6e1;
+    --text-secondary: #8a8d98;
+    --text-muted:     #555861;
 
-    /* Borders */
-    --border:         rgba(255, 255, 255, 0.06);
-    --border-gold:    rgba(212, 175, 55, 0.3);
+    --border:         rgba(255, 255, 255, 0.05);
+    --border-gold:    rgba(201, 162, 39, 0.2);
 
-    /* Typography */
     --font-display:   'Oswald', sans-serif;
     --font-body:      'Inter', sans-serif;
 
-    /* Spacing scale */
     --space-xs:   0.25rem;
     --space-sm:   0.5rem;
     --space-md:   1rem;
@@ -43,19 +35,16 @@
     --space-2xl:  4rem;
     --space-3xl:  6rem;
 
-    /* Radii */
-    --radius-sm:  6px;
-    --radius-md:  12px;
-    --radius-lg:  20px;
-    --radius-xl:  28px;
+    --radius-sm:  4px;
+    --radius-md:  8px;
+    --radius-lg:  16px;
+    --radius-xl:  24px;
 
-    /* Shadows */
-    --shadow-card:  0 4px 24px rgba(0, 0, 0, 0.4);
-    --shadow-glow:  0 0 30px rgba(212, 175, 55, 0.15);
+    --shadow-card:  0 2px 16px rgba(0, 0, 0, 0.5);
+    --shadow-glow:  0 0 20px rgba(201, 162, 39, 0.08);
 
-    /* Transitions */
-    --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
-    --transition:  0.35s var(--ease-out);
+    --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    --transition:  0.3s var(--ease-out);
 }
 
 /* ───────── Reset & Base ───────── */
@@ -462,10 +451,10 @@ ul {
 
 .section-title {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 600;
     text-align: center;
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: var(--space-sm);
 }
@@ -477,8 +466,10 @@ ul {
 .section-subtitle {
     text-align: center;
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 0.92rem;
     margin-bottom: var(--space-2xl);
+    font-weight: 300;
+    letter-spacing: 0.3px;
 }
 
 /* ───────── COUNTDOWN SECTION ───────── */
@@ -608,8 +599,8 @@ ul {
 
 .teams-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-md);
 }
 
 /* Sync Status Badge */
@@ -644,8 +635,7 @@ ul {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: var(--space-lg);
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    transition: border-color 0.25s ease;
 }
 
 .group-card::before {
@@ -653,30 +643,28 @@ ul {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--green));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition);
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 
 .group-card:hover {
-    transform: translateY(-4px);
     border-color: var(--border-gold);
-    box-shadow: var(--shadow-glow);
 }
 
 .group-card:hover::before {
-    transform: scaleX(1);
+    opacity: 1;
 }
 
 .group-card-title {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--gold);
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: var(--space-md);
     padding-bottom: var(--space-xs);
@@ -688,19 +676,20 @@ ul {
 .group-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-secondary);
 }
 
 .group-table th {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
     color: var(--text-muted);
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     padding: 6px 4px;
     text-align: center;
     border-bottom: 1px solid var(--border);
+    font-weight: 500;
 }
 
 .group-table th:nth-child(2) {
@@ -708,9 +697,9 @@ ul {
 }
 
 .group-table td {
-    padding: 8px 4px;
+    padding: 9px 4px;
     text-align: center;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     vertical-align: middle;
 }
 
@@ -724,9 +713,10 @@ ul {
 
 .group-table-rank {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-muted);
     width: 25px;
+    font-size: 0.8rem;
 }
 
 .group-table-team {
@@ -738,7 +728,7 @@ ul {
 }
 
 .group-table-flag {
-    font-size: 1.1rem;
+    font-size: 1rem;
     display: inline-block;
     line-height: 1;
 }
@@ -1379,8 +1369,8 @@ ul {
 /* ───────── SCROLL ANIMATIONS ───────── */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .animate-on-scroll.visible {
@@ -1388,10 +1378,10 @@ ul {
     transform: translateY(0);
 }
 
-/* Stagger children */
-.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
-.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
-.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+/* Subtle stagger */
+.animate-on-scroll:nth-child(2) { transition-delay: 0.05s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.15s; }
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 768px) {
@@ -1496,59 +1486,59 @@ ul {
 .standings-filter {
     display: flex;
     justify-content: flex-start;
-    gap: var(--space-xs);
+    gap: 6px;
     overflow-x: auto;
-    padding: var(--space-sm) 4px;
+    padding: var(--space-sm) 0;
     margin-bottom: var(--space-xl);
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     align-items: center;
 }
 
 @media (min-width: 992px) {
     .standings-filter {
         justify-content: center;
+        flex-wrap: wrap;
     }
 }
 
 .standings-filter::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
 }
 
 .filter-btn {
-    background: var(--bg-glass);
+    background: transparent;
     border: 1px solid var(--border);
-    color: var(--text-secondary);
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     white-space: nowrap;
     cursor: pointer;
-    transition: all var(--transition);
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .filter-btn:hover {
-    border-color: var(--border-gold);
-    color: var(--gold);
-    transform: translateY(-1px);
+    border-color: var(--text-muted);
+    color: var(--text-secondary);
 }
 
 .filter-btn.active {
-    background: var(--gold-dim);
-    color: var(--gold);
+    background: var(--gold);
+    color: var(--bg-primary);
     border-color: var(--gold);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    font-weight: 600;
 }
 
 /* iOS Safari Warning Overlay */
 .video-error-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(10, 14, 23, 0.95);
+    background: rgba(8, 9, 13, 0.96);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1560,159 +1550,120 @@ ul {
 }
 
 .video-error-overlay .error-icon {
-    font-size: 2.5rem;
-    filter: drop-shadow(0 0 8px rgba(231, 76, 60, 0.5));
+    font-size: 2rem;
 }
 
 .video-error-overlay p {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    max-width: 420px;
+    max-width: 400px;
     line-height: 1.6;
 }
 
-/* Smart Live Match Countdown Button */
+/* Live Match Countdown Button */
 .live-match-btn {
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
-    animation: livePulseGlow 2s infinite;
+    background: var(--red-live);
     margin: 0 auto var(--space-xl);
     font-family: var(--font-display);
-    font-size: 0.95rem;
-    letter-spacing: 2px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
-    transition: all var(--transition);
+    transition: all 0.2s ease;
+    animation: none;
+    box-shadow: 0 2px 12px rgba(214, 48, 49, 0.3);
 }
 
 .live-match-btn:hover {
-    transform: translateY(-2px) scale(1.02);
-}
-
-@keyframes livePulseGlow {
-    0%, 100% { 
-        box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4); 
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
-    }
-    50% { 
-        box-shadow: 0 4px 35px rgba(231, 76, 60, 0.85); 
-        background: linear-gradient(135deg, #ff6b6b, #e74c3c);
-    }
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(214, 48, 49, 0.5);
 }
 
 /* ============================================================
-   ANTI-AI CUSTOM DESIGN OVERHAUL STYLES
+   REFINED DESIGN SYSTEM
    ============================================================ */
 
-/* Global Stadium Grid Mesh Background Pattern Overlay */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: radial-gradient(rgba(212, 175, 55, 0.035) 1px, transparent 1px);
-    background-size: 24px 24px;
-    pointer-events: none;
-    z-index: 100;
-}
-
-/* Editorial Typography: Section Gradient Title Clipping */
-.section-title {
-    background: linear-gradient(135deg, #ffffff 40%, var(--gold-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    display: inline-block;
-}
-
-/* High-Fidelity Custom Indicator Dots replacing Emojis */
+/* Indicator dots */
 .indicator-dot {
     display: inline-block;
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background-color: var(--gold);
-    box-shadow: 0 0 10px var(--gold);
     margin-right: var(--space-sm);
     vertical-align: middle;
 }
 
 .live-pulse-indicator {
     display: inline-block;
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background-color: var(--red-live);
-    box-shadow: 0 0 12px var(--red-live), 0 0 4px var(--red-live);
     margin-right: var(--space-sm);
     vertical-align: middle;
-    animation: livePulseIndicatorGlow 1.5s infinite;
+    animation: livePulseIndicator 2s ease-in-out infinite;
 }
 
-@keyframes livePulseIndicatorGlow {
-    0%, 100% { 
-        transform: scale(1); 
-        opacity: 1; 
-        box-shadow: 0 0 12px var(--red-live); 
-    }
-    50% { 
-        transform: scale(1.25); 
-        opacity: 0.65; 
-        box-shadow: 0 0 22px var(--red-live), 0 0 6px var(--red-live); 
-    }
+@keyframes livePulseIndicator {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
 }
 
-/* Neon Hero Live Stream Broadcaster Ribbon */
+/* Hero Live Ribbon */
 .hero-live-ribbon {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
-    background: rgba(231, 76, 60, 0.08);
-    border: 1px solid rgba(231, 76, 60, 0.25);
-    color: #ff5e57;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-family: var(--font-display);
-    font-size: 0.72rem;
+    background: rgba(214, 48, 49, 0.06);
+    border: 1px solid rgba(214, 48, 49, 0.18);
+    color: var(--red-live);
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: var(--space-md);
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.15);
-    backdrop-filter: blur(5px);
-    animation: ribbonFloat 4s ease-in-out infinite;
+    margin-bottom: var(--space-lg);
+    animation: none;
 }
 
-@keyframes ribbonFloat {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-4px); }
-}
-
-/* Asymmetrical Premium Navigation Bar Border Overlay */
+/* Nav bottom line */
 .main-nav {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45);
+    border-bottom: 1px solid var(--border);
 }
 
 .main-nav::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75%;
+    left: 0;
+    width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), var(--green), transparent);
-    opacity: 0.45;
+    background: linear-gradient(90deg, transparent 5%, var(--gold) 50%, transparent 95%);
+    opacity: 0.12;
 }
 
-/* Reflective Card Glass Insets & Glowing Reflections */
+/* Card subtle styling */
 .group-card, .live-card, .fixture-card {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025), 0 8px 32px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .group-card:hover, .live-card:hover, .fixture-card:hover {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.085), var(--shadow-glow);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
+
+/* Section title — clean, no gradient text clipping */
+.section-title {
+    color: var(--text-primary);
+    -webkit-text-fill-color: unset;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+}
+

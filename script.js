@@ -543,6 +543,12 @@
             
             currentStandingsFilter = btn.dataset.group;
             renderTeams();
+
+            // Force newly rendered cards to be immediately visible
+            // (they have animate-on-scroll which starts at opacity:0)
+            teamsGrid.querySelectorAll('.group-card.animate-on-scroll').forEach(card => {
+                card.classList.add('visible');
+            });
         });
     }
 

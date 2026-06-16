@@ -33,25 +33,6 @@
 
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css" />
-    <script>
-        window.addEventListener('error', function(e) {
-            const errDiv = document.createElement('div');
-            errDiv.style.position = 'fixed';
-            errDiv.style.top = '10px';
-            errDiv.style.left = '10px';
-            errDiv.style.right = '10px';
-            errDiv.style.padding = '20px';
-            errDiv.style.background = 'rgba(231, 76, 60, 0.95)';
-            errDiv.style.color = 'white';
-            errDiv.style.zIndex = '99999';
-            errDiv.style.fontFamily = 'monospace';
-            errDiv.style.fontSize = '14px';
-            errDiv.style.borderRadius = '8px';
-            errDiv.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-            errDiv.innerHTML = '<strong>JS Error:</strong> ' + e.message + '<br>Stack: ' + (e.error ? e.error.stack : 'N/A');
-            document.body.appendChild(errDiv);
-        });
-    </script>
 </head>
 <body>
 
@@ -186,7 +167,7 @@
             <h2 class="section-title animate-on-scroll">
                 <span class="title-accent indicator-dot"></span> Group Standings
             </h2>
-            <p class="section-subtitle animate-on-scroll">48 nations. 12 groups. Real-time standings from the tournament.</p>
+            <p class="section-subtitle animate-on-scroll">48 nations across 12 groups — updated live from the tournament</p>
 
             <!-- Interactive Group filter pills -->
             <div class="standings-filter animate-on-scroll" id="standings-filter">
