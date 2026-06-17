@@ -16,7 +16,7 @@
      * This is a DASH/MPD live stream that requires ClearKey DRM.
      * Replace with your own licensed stream URL as needed.
      */
-    const VIDEO_URL = 'https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/ch299/default/index.mpd';
+    const VIDEO_URL = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
     /**
      * JW_PLAYER_KEY — Valid JW Player 8.x license key.
