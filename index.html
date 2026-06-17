@@ -175,51 +175,18 @@
             <h2 class="section-title animate-on-scroll">Live Match</h2>
 
             <div class="video-player-wrapper animate-on-scroll" id="video-player-wrapper">
-                <div class="video-container" id="video-container">
-                    <video
-                        id="main-video"
-                        class="main-video"
-                        preload="metadata"
-                        crossorigin="anonymous"
-                        playsinline
-                        poster="assets/stadium-hero.png"
-                    >
-                        Your browser does not support the video tag.
-                    </video>
-
-                    <div id="video-error-overlay" class="video-error-overlay hidden">
-                        <p id="video-error-msg">DASH streaming requires a desktop or Android browser.</p>
-                    </div>
-
-                    <div class="video-controls" id="video-controls">
-                        <div class="video-progress" id="video-progress">
-                            <div class="video-progress-filled" id="video-progress-filled"></div>
-                        </div>
-                        <div class="video-controls-row">
-                            <button class="vc-btn" id="vc-play" aria-label="Play or pause video">
-                                <svg class="vc-icon play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                                <svg class="vc-icon pause-icon hidden" viewBox="0 0 24 24"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
-                            </button>
-                            <button class="vc-btn" id="vc-mute" aria-label="Mute or unmute">
-                                <svg class="vc-icon vol-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12A4.5 4.5 0 0014 7.97v8.05A4.48 4.48 0 0016.5 12z"/></svg>
-                                <svg class="vc-icon vol-off hidden" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2"/><line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2"/></svg>
-                            </button>
-                            <input type="range" class="vc-volume-slider" id="vc-volume" min="0" max="1" step="0.05" value="1" aria-label="Volume" />
-                            <span class="vc-time" id="vc-time">0:00 / 0:00</span>
-                            <span class="vc-spacer"></span>
-                            <button class="vc-btn" id="vc-pip" aria-label="Picture in picture">
-                                <svg class="vc-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="22" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="11" width="10" height="8" rx="1" fill="currentColor" opacity="0.5"/></svg>
-                            </button>
-                            <button class="vc-btn" id="vc-fullscreen" aria-label="Toggle fullscreen">
-                                <svg class="vc-icon fs-enter" viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-                                <svg class="vc-icon fs-exit hidden" viewBox="0 0 24 24"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <button class="video-big-play" id="video-big-play" aria-label="Play video">
-                        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/><polygon points="26,20 46,32 26,44" fill="rgba(255,255,255,0.9)"/></svg>
-                    </button>
+                <div class="video-container" id="video-container" style="padding-top: 56.25%; position: relative;">
+                    <iframe 
+                        allowfullscreen="true" 
+                        allow="encrypted-media; autoplay" 
+                        class="cf" 
+                        frameborder="0" 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                        rel="nofollow" 
+                        sandbox="allow-forms allow-same-origin allow-scripts" 
+                        scrolling="no" 
+                        src="https://6.kooralive360.com/albaplayer/bein-sports-hd-1/">
+                    </iframe>
                 </div>
             </div>
         </div>
