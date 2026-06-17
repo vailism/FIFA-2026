@@ -11,36 +11,8 @@
        1. CONFIGURATION & DATA
        ───────────────────────────────────────────────────────── */
 
-    /**
-     * VIDEO_URL — Legally authorized DASH stream URL.
-     * This is a DASH/MPD live stream that requires ClearKey DRM.
-     * Replace with your own licensed stream URL as needed.
-     */
-    const VIDEO_URL = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+    /* Video is now an embedded Yalla Server iframe — no JS config needed */
 
-    /**
-     * JW_PLAYER_KEY — Valid JW Player 8.x license key.
-     * When set, the site uses JW Player with full DASH + DRM support.
-     * If left empty, it falls back to the built-in HTML5 player.
-     */
-    const JW_PLAYER_KEY = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-
-    /**
-     * JW_PLAYER_SDK_URL — CDN path to the JW Player library.
-     * Version 8.21.0 is used to match the license key.
-     */
-    const JW_PLAYER_SDK_URL = 'https://ssl.p.jwpcdn.com/player/v/8.21.0/jwplayer.js';
-
-    /**
-     * DRM_CONFIG — ClearKey DRM credentials for the DASH stream.
-     * keyId and key are hex-encoded as required by the EME spec.
-     */
-    const DRM_CONFIG = {
-        clearkey: {
-            keyId: '549ab7cd35a64bb6bb479ecead04d69d',
-            key:   '829799ed534d11fcadeb4b192467e050'
-        }
-    };
 
     /**
      * NEXT_MATCH — Target date/time for the countdown timer.
@@ -232,11 +204,8 @@
     const cdTeamB   = $('#countdown-team-b');
     const cdVenue   = $('#countdown-venue');
 
-    // Video player
+    // Video player (now an embedded iframe — no JS controls needed)
     const videoContainer   = $('#video-container');
-    const videoContainer   = $('#video-container');
-    // Other video controls removed for Yalla Server iframe
-
 
 
     /* ─────────────────────────────────────────────────────────
@@ -605,38 +574,13 @@
 
 
     /* ─────────────────────────────────────────────────────────
-       9. VIDEO PLAYER
-       Dual-mode: JW Player (DASH + ClearKey DRM) when a valid
-       license key is provided, otherwise custom HTML5 player.
+       9. VIDEO PLAYER (Yalla Server iframe — no JS needed)
        ───────────────────────────────────────────────────────── */
 
-    /**
-     * Dynamically loads an external <script> and returns a Promise
-     * that resolves when the script has finished loading.
-     * @param {string} src — URL of the script to load
-     * @returns {Promise<void>}
-     */
-    function loadScript(src) {
-        return new Promise((resolve, reject) => {
-            const s = document.createElement('script');
-            s.src = src;
-            s.async = true;
-            s.onload = resolve;
-            s.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-            document.head.appendChild(s);
-        });
+    function initVideoPlayer() {
+        // Stream is embedded directly as an iframe in index.html
     }
 
-    /**
-     * Initialise the video player.
-     * If JW_PLAYER_KEY is set, loads the JW Player SDK from CDN,
-     * replaces the HTML5 <video> element with a JW Player instance
-     * configured for DASH playback with ClearKey DRM.
-     * Otherwise falls back to the custom HTML5 controls.
-     */
-    async function initVideoPlayer() {
-        // Video is now handled directly by the embedded Yalla Server iframe in index.html
-    }
 
 
     /* ─────────────────────────────────────────────────────────
