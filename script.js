@@ -568,13 +568,13 @@
             let badgeHTML = '';
             if (isUpcoming) {
                 badgeHTML = `
-                    <span class="live-badge upcoming" style="background: var(--gold-dim); color: var(--gold);">
+                    <span class="live-badge upcoming" style="color: var(--gold);">
                         UPCOMING
                     </span>
                 `;
             } else if (isFT) {
                 badgeHTML = `
-                    <span class="live-badge ft" style="background: rgba(46, 204, 113, 0.15); color: var(--green);">
+                    <span class="live-badge ft" style="color: var(--text-3);">
                         FINISHED
                     </span>
                 `;
@@ -643,100 +643,16 @@
      * Otherwise falls back to the custom HTML5 controls.
      */
     async function initVideoPlayer() {
+        if (!VIDEO_URL) return;
 
-        // Check for iOS Safari when playing DASH stream (.mpd)
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (isIOS && VIDEO_URL && VIDEO_URL.endsWith('.mpd')) {
-            const errorOverlay = document.getElementById('video-error-overlay');
-            if (errorOverlay) {
-                errorOverlay.classList.remove('hidden');
-            }
-            videoBigPlay.style.display = 'none';
-            console.warn('[VideoPlayer] DASH stream is unsupported on iOS Safari. Displaying warning overlay.');
-            return;
-        }
-
-        /* ── JW PLAYER PATH ───────────────────────────────── */
-        if (JW_PLAYER_KEY && VIDEO_URL) {
-            try {
-                // 1. Load the JW Player SDK from CDN
-                await loadScript(JW_PLAYER_SDK_URL);
-
-                // 2. Set the license key
-                if (typeof jwplayer !== 'undefined') {
-                    jwplayer.key = JW_PLAYER_KEY;
-                } else {
-                    throw new Error('jwplayer global not found after SDK load');
-                }
-
-                // 3. Hide custom HTML5 controls (JW provides its own)
-                videoControls.style.display = 'none';
-                videoBigPlay.style.display  = 'none';
-
-                // 4. Initialise JW Player on the existing <video> element
-                const jwInstance = jwplayer('main-video');
-                jwInstance.setup({
-                    playlist: [{
-                        title: 'FIFA World Cup 2026 — Live',
-                        sources: [{
-                            default: false,
-                            type: 'dash',
-                            file: VIDEO_URL,
-                            drm: DRM_CONFIG,
-                            label: '0'
-                        }]
-                    }],
-                    width:       '100%',
-                    height:      '100%',
-                    aspectratio: '16:9',
-                    autostart:   true,
-                    cast:    {},   // Chromecast support
-                    sharing: {},   // Social sharing overlay
-                    logo: {
-                        file:     '',          // No logo image
-                        link:     '',
-                        position: 'top-right'
-                    }
-                });
-
-                console.info('[VideoPlayer] JW Player initialised with DASH + ClearKey DRM.');
-                return; // All done — skip HTML5 fallback
-
-            } catch (err) {
-                // If JW Player fails to load, fall through to HTML5
-                console.warn('[VideoPlayer] JW Player failed, falling back to HTML5:', err);
-            }
-        }
-
-        /* ── HTML5 FALLBACK PATH ───────────────────────────── */
-        if (VIDEO_URL) {
-            if (VIDEO_URL.endsWith('.mpd')) {
-                try {
-                    // Dynamically load dash.js player library from CDN
-                    await loadScript('https://cdn.dashjs.org/latest/dash.all.min.js');
-                    if (typeof dashjs !== 'undefined') {
-                        const player = dashjs.MediaPlayer().create();
-                        player.initialize(video, VIDEO_URL, false);
-                        
-                        // Set up protection data for DRM ClearKey credentials inside dash.js
-                        player.setProtectionData({
-                            "org.w3.clearkey": {
-                                "clearkey": {
-                                    "549ab7cd35a64bb6bb479ecead04d69d": "829799ed534d11fcadeb4b192467e050"
-                                }
-                            }
-                        });
-                        console.info('[VideoPlayer] Fallback HTML5 Player initialized with dash.js and ClearKey DRM.');
-                    } else {
-                        throw new Error('dashjs global not found after SDK load');
-                    }
-                } catch (dashErr) {
-                    console.error('[VideoPlayer] dash.js load/initialization failed:', dashErr);
-                    video.src = VIDEO_URL;
-                }
-            } else {
-                video.src = VIDEO_URL;
-            }
+        try {
+            // For standard MP4 streams, just use the native HTML5 player
+            // This avoids any DRM or JWPlayer DASH decoder errors (like 241404)
+            video.src = VIDEO_URL;
+            videoBigPlay.style.display = 'flex';
+            videoControls.style.display = 'flex';
+        } catch (err) {
+            console.error('[VideoPlayer] Initialization failed:', err);
         }
 
         // — Helpers —
