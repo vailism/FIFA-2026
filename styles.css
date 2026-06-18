@@ -99,6 +99,13 @@ ul { list-style: none; }
     width: 0%;
     background: var(--gold);
     transition: width 0.3s ease;
+    /* CSS-only shimmer fallback while JS loads */
+    animation: loading-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
 }
 
 
