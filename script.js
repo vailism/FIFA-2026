@@ -578,7 +578,32 @@
        ───────────────────────────────────────────────────────── */
 
     function initVideoPlayer() {
-        // Stream is embedded directly as an iframe in index.html
+        // Channel embed URLs (Yalla Live Pro streams)
+        const CHANNELS = {
+            bein1:   'https://yallalive.pro/albaplayer/bein-sports-hd-1/',
+            bein2:   'https://yallalive.pro/albaplayer/bein-sports-hd-2/',
+            bein3:   'https://yallalive.pro/albaplayer/bein-sports-hd-3/',
+        };
+
+        const channelSelector = document.getElementById('channel-selector');
+        const broadcastIframe = document.getElementById('broadcast-iframe');
+
+        if (channelSelector && broadcastIframe) {
+            channelSelector.addEventListener('click', (e) => {
+                const btn = e.target.closest('.channel-btn');
+                if (!btn) return;
+
+                // Update active state
+                channelSelector.querySelectorAll('.channel-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Switch channel
+                const channel = btn.dataset.channel;
+                if (CHANNELS[channel]) {
+                    broadcastIframe.src = CHANNELS[channel];
+                }
+            });
+        }
     }
 
 

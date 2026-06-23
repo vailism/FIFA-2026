@@ -1003,6 +1003,92 @@ ul { list-style: none; }
 }
 
 
+/* ─── CHANNEL SELECTOR ─── */
+.channel-selector {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 24px;
+}
+
+.channel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-3);
+    border: 1px solid var(--border);
+    margin: -0.5px;
+    transition: all 0.25s ease;
+    background: transparent;
+    cursor: pointer;
+}
+
+.channel-btn:hover {
+    color: var(--text-2);
+    background: var(--bg-surface);
+}
+
+.channel-btn.active {
+    color: var(--bg);
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+.channel-icon {
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
+/* ─── BROADCAST FALLBACK ─── */
+.broadcast-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px;
+    text-align: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    margin-top: 16px;
+}
+
+.fallback-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.fallback-title {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.fallback-text {
+    font-size: 0.8rem;
+    color: var(--text-3);
+    max-width: 400px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.fallback-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
 /* ─── FOOTER ─── */
 .site-footer {
     background: var(--bg);
@@ -1175,6 +1261,22 @@ ul { list-style: none; }
     }
 
     .standings-filter::-webkit-scrollbar { display: none; }
+
+    .channel-selector {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .channel-selector::-webkit-scrollbar { display: none; }
+
+    .channel-btn {
+        white-space: nowrap;
+        padding: 8px 16px;
+        font-size: 0.6rem;
+    }
 }
 
 @media (max-width: 480px) {
