@@ -1,5 +1,5 @@
+node_modules/
+.env
 .DS_Store
-._*
-**/._*
-.Spotlight-V100
-.Trashes
+dist/
+build/
